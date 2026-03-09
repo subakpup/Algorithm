@@ -1,4 +1,3 @@
-import java.util.*;
 import java.io.*;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
             char c = s.charAt(i);
 
             if (c == '(') ++cnt;
-            else if (c == ')') {
+            else {
                 if (cnt <= 0) return "NO";
                 --cnt;
             }
