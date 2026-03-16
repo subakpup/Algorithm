@@ -13,9 +13,7 @@ public class Main {
         Loop:
         for (int i = 0; i <= n - 8; i++) {
             for (int j = 0; j <= m - 8; j++) {
-                answer = Math.min(paint(i, j, true), answer);
-                answer = Math.min(paint(i, j, false), answer);
-
+                answer = Math.min(answer, paint(i, j));
                 if (answer == 0) break Loop;
             }
         }
@@ -23,20 +21,18 @@ public class Main {
         System.out.println(answer);
     }
 
-    private static int paint(int sx, int sy, boolean start) {
+    private static int paint(int sx, int sy) {
         int cnt = 0;
         
-        for (int i = sx; i < sx + 8; i++) {
-            if (i % 2 == 0) {
-                for (int j = sy; j < sy + 8; j += 2) if (start != arr[i][j]) ++cnt;
-                for (int j = sy + 1; j < sy + 8; j += 2) if (start == arr[i][j]) ++ cnt;
-            } else {
-                for (int j = sy; j < sy + 8; j += 2) if (start == arr[i][j]) ++cnt;
-                for (int j = sy + 1; j < sy + 8; j += 2) if (start != arr[i][j]) ++ cnt;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                boolean expected = ((i + j) % 2 == 0);
+
+                if (arr[sx + i][sy + j] != expected) ++cnt;
             }
         }
 
-        return cnt;
+        return Math.min(cnt, 64 - cnt);
     }
 
     public static void main(String[] args) throws IOException {
