@@ -7,13 +7,14 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        int[][] arr = new int[n][2];
+        int[] x = new int[n];
+        int[] y = new int[n];
 
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             
-            arr[i][0] = Integer.parseInt(st.nextToken());
-            arr[i][1] = Integer.parseInt(st.nextToken());
+            x[i] = Integer.parseInt(st.nextToken());
+            y[i] = Integer.parseInt(st.nextToken());
         }
 
         StringBuilder sb = new StringBuilder();
@@ -22,7 +23,7 @@ public class Main {
             int rank = 1;
 
             for (int j = 0; j < n; j++) {
-                if (arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) {
+                if (x[i] < x[j] && y[i] < y[j]) {
                     ++rank;
                 }
             }
