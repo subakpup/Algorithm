@@ -22,19 +22,17 @@ class Main {
 
             while (!deque.isEmpty()) {
                 int max = Collections.max(deque);
-                int first = deque.peekFirst();
+                int first = deque.pollFirst();
                 --m;
 
                 if (max == first) {
                     ++cnt;
-                    deque.pollFirst();
-                    
                     if (m < 0) {
                         sb.append(cnt).append('\n');
                         break;
                     }
                 } else {
-                    deque.addLast(deque.pollFirst());
+                    deque.addLast(first);
                     if (m < 0) m = deque.size() - 1;
                 }
             }
